@@ -15,11 +15,27 @@ pipeline {
         nexusUrl = 'nexus.mahidevops.cloud:8081'
     }
     stages {
-        stage('read the version') {
+        stage('print the version') {
             steps{
                 script{
                     echo "Application Version is: ${params.appVersion}"
                 }
+            }
+        }
+        stage('Init') {
+            steps{
+                sh """
+                    cd terraform
+                    terraform init
+                """
+            }
+        }
+        stage('Plan') {
+            steps{
+                sh """
+                    cd terraform
+                    terraform plan -var="app-version=${params.appVersion}"
+                """
             }
         }
     }
