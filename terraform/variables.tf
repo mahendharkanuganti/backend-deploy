@@ -20,6 +20,6 @@ variable "zone_name" {
     default = "mahidevops.cloud"
 }
 
-variable "app-version" {
+variable "app_version" {
   
 }
